@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Ads.Models.Ad>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>My Ads</h2>
+
+<hr/>
+
+@foreach (var item in Model)
+{
+        <div class="row">
+            <div class="6u 12u(narrower) image-wrapper">
+                <img class="image featured" src="~/Data/Images/@item.ImageUrl" alt="" />
+            </div>
+
+            <div class="3u 12u(narrower)">
+                <p style="margin-bottom: 0; font-weight: bold">@Html.LabelFor(modelItem => item.Title)</p>
+                <p style="margin-bottom: 0">@Html.DisplayFor(modelItem => item.Title)</p>
+                <br />
+                <p style="margin-bottom: 0; font-weight: bold">@Html.LabelFor(modelItem => item.Condition)</p>
+                <p style="margin-bottom: 0">@Html.DisplayFor(modelItem => item.Condition)</p>
+                <br/>
+                <p style="margin-bottom: 0; font-weight: bold">@Html.LabelFor(modelItem => item.Price)</p>
+                <p style="margin-bottom: 0">@Html.DisplayFor(modelItem => item.Price)</p>
+                <br />
+                <p style="margin-bottom: 0; font-weight: bold">@Html.LabelFor(modelItem => item.Category)</p>
+                <p style="margin-bottom: 0">@Html.DisplayFor(modelItem => item.Category)</p>
+                <br />
+                <p style="margin-bottom: 0; font-weight: bold">@Html.LabelFor(modelItem => item.City)</p>
+                <p style="margin-bottom: 0">@Html.DisplayFor(modelItem => item.City)</p>
+            </div>
+
+            <div class="3u 12u(narrower)">
+                <p style="margin-bottom: 0; font-weight: bold">@Html.LabelFor(modelItem => item.Description)</p>
+                <p style="margin-bottom: 0">@Html.DisplayFor(modelItem => item.Description)</p>
+                <br />
+                <p style="margin-bottom: 0; font-weight: bold">@Html.LabelFor(modelItem => item.IsActive)</p>
+                <p style="margin-bottom: 0">@Html.DisplayFor(modelItem => item.IsActive)</p>
+            </div>
+
+            <div class="2u 12u(narrower" )>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </div>
+        </div>
+}
+<hr/>

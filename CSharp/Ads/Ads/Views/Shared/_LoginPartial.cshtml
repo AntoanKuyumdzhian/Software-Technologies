@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+        <nav id="nav">
+            <ul>
+                <li>@Html.ActionLink("Buy", "Index", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                <li>@Html.ActionLink("Sell", "Create", "Ads", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                <li class="break">@Html.ActionLink("My Account",null, null, routeValues: null, htmlAttributes: new { id = "registerLink" })
+                    <ul>
+                        <li>
+                            @Html.ActionLink("Change Password", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("My Ads", "Index", "Ads", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                        </li>
+
+                    </ul>
+
+                </li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            </ul>
+        </nav>
+    }
+}
+else
+{
+    <nav id="nav">
+        <ul>
+            <li>@Html.ActionLink("Buy", "Index", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            <li>@Html.ActionLink("Sell", "Create", "Ads", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            <li class="break">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink"})</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink"})</li>
+        </ul>
+    </nav>
+}

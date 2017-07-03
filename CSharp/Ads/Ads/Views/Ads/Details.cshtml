@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNet.Identity
+@model Ads.Models.Ad
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+
+    <div class="row">
+        <div class="6u 12u(narrower) image-wrapper">
+            <img class="image featured" src="~/Data/Images/@Model.ImageUrl" alt="" />
+        </div>
+
+        <div class="3u 12u(narrower)">
+            <p style="margin-bottom: 0; font-weight: bold">@Html.LabelFor(model => model.Title)</p>
+            <p style="margin-bottom: 0">@Html.DisplayFor(model => model.Title)</p>
+            <br />
+            <p style="margin-bottom: 0; font-weight: bold">@Html.LabelFor(model => model.Condition)</p>
+            <p style="margin-bottom: 0">@Html.DisplayFor(model => model.Condition)</p>
+            <br />
+            <p style="margin-bottom: 0; font-weight: bold">@Html.LabelFor(model => model.Price)</p>
+            <p style="margin-bottom: 0">@Html.DisplayFor(model => model.Price)</p>
+            <br />
+            <p style="margin-bottom: 0; font-weight: bold">@Html.LabelFor(model => model.Category)</p>
+            <p style="margin-bottom: 0">@Html.DisplayFor(model => model.Category)</p>
+            <br />
+            <p style="margin-bottom: 0; font-weight: bold">@Html.LabelFor(model => model.City)</p>
+            <p style="margin-bottom: 0">@Html.DisplayFor(model => model.City)</p>
+        </div>
+
+        <div class="3u 12u(narrower)">
+            <p style="margin-bottom: 0; font-weight: bold">@Html.LabelFor(model => model.Description)</p>
+            <p style="margin-bottom: 0">@Html.DisplayFor(model => model.Description)</p>
+            <br />
+            <p style="margin-bottom: 0; font-weight: bold">@Html.LabelFor(model => model.IsActive)</p>
+            <p style="margin-bottom: 0">@Html.DisplayFor(model => model.IsActive)</p>
+        </div>
+
+        @if (User.IsInRole("Admin") || User.Identity.GetUserId() == Model.UserId)
+        {
+            <div class="2u 12u(narrower" )>
+                @Html.ActionLink("Edit", "Edit", new {id = Model.Id}) |
+                @Html.ActionLink("Delete", "Delete", new {id = Model.Id})
+            </div>
+        }
+
+     </div>
+
+        <p>
+            <input type="button" value="Back" onclick="location.href='@Url.Action("Index", "Home")'" />
+        </p>

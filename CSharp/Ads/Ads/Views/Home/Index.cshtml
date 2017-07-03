@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Ads.Models.MultiItemsView>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+    <div class="container">
+        <div class="row">
+
+            @foreach (var ad in Model)
+            {
+
+                ViewBag.imagePath = "~/Data/Images/" + @ad.Image;
+                <section class="4u 12u(normal ) 4u(narrow) 6u(narrower) 6u(mobile) 12u(mobilep)">
+                    <div class="image-wrapper" >
+                        <a href="~/Ads/Details/@ad.Id" class="image-featured">
+                        <h4>@ad.Title - @ad.Condition</h4>
+                        <img src="~/Data/Images/@ad.Image" alt="" style="max-width: 100%; height: auto; display: block">
+                        <div style="text-align: center">Price: @ad.Price .lv</div>
+                        </a>
+                    </div>
+                </section>
+            }
+        </div>
+        <br />
+        <div class="col-md-4" style="text-align: center">
+            <span>Page</span>
+            <br />
+            @if (ViewBag.Page > 1)
+            {
+                <a href="/Home/Index?page=@(ViewBag.Page - 1)" class="btn btn-primary" style="display: inline-block; font-size: 2em">&laquo </a>
+            }
+            <h3 style="display: inline-block">@ViewBag.page</h3>
+            @if (ViewBag.Page * ViewBag.pageSize < ViewBag.totalAds)
+            {
+                <a href="/Home/Index?page=@(ViewBag.Page + 1)" class="btn btn-primary" style="display: inline-block; font-size: 2em"> &raquo</a>
+            }
+        </div>
+    </div>
